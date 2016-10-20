@@ -9,10 +9,15 @@
 import Foundation
 
 var unsortedArray: NSMutableArray = NSMutableArray(array: [])
-for i in 1...45000{
+
+let methodStart1 = NSDate()
+for i in 1...50{
     var random: Int = Int(arc4random_uniform(9)+1)
     unsortedArray.add(random)
 }
+let methodFinished1 = NSDate()
+let executionTime1 = methodFinished1.timeIntervalSince(methodStart1 as Date)
+print("\(unsortedArray.count) elements \n\(executionTime1) seconds ")
 
 let methodStart = NSDate()
 for j in 1...unsortedArray.count-1{
