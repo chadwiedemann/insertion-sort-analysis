@@ -8,16 +8,40 @@
 
 import Foundation
 
-var unsortedArray: NSMutableArray = NSMutableArray(array: [])
 
+var CSVStringTotal: String = ""
+var unsortedArray: NSMutableArray = NSMutableArray(array: [])
+let title: String = String("elements, n, nsquared\n")
+CSVStringTotal.append(title)
+for i in 1...7{
+    var elements: Int = 0
+
+    if i == 1{
+        elements = 2
+    }else if i == 2{
+        elements = 10
+    }else if i==3{
+        elements = 50
+    }else if i==4{
+        elements = 100
+    }else if i==5{
+        elements = 150
+    }else if i == 6{
+        elements = 300
+    }else if i == 7{
+        elements = 1000
+    }
+
+unsortedArray.removeAllObjects()
 let methodStart1 = NSDate()
-for i in 1...50{
-    var random: Int = Int(arc4random_uniform(9)+1)
+for i in 1...elements{
+    let random: Int = Int(arc4random_uniform(9)+1)
     unsortedArray.add(random)
 }
 let methodFinished1 = NSDate()
 let executionTime1 = methodFinished1.timeIntervalSince(methodStart1 as Date)
-print("\(unsortedArray.count) elements \n\(executionTime1) seconds ")
+var s1 = String("\(unsortedArray.count),")
+var s2 = String("\(executionTime1),")
 
 let methodStart = NSDate()
 for j in 1...unsortedArray.count-1{
@@ -32,5 +56,8 @@ for j in 1...unsortedArray.count-1{
 }
 let methodFinished = NSDate()
 let executionTime = methodFinished.timeIntervalSince(methodStart as Date)
-print("\(unsortedArray.count) elements \n\(executionTime) seconds ")
-
+var s3 = String("\(executionTime)")
+var CSVString = String("\(s1!)\(s2!)\(s3!)\n")
+CSVStringTotal.append(CSVString!)
+}
+print(CSVStringTotal)
